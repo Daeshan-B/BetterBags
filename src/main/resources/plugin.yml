@@ -1,0 +1,36 @@
+name: BetterBags
+version: ${project.version}
+main: com.tscforum.betterbags.BagMainClass
+authors: [Mason, Daeshan]
+description: A plugin that adds bags to spigot servers.
+website: tscforum.com
+
+commands:
+  bags:
+    usage: /<command>
+    description: Issues the main command
+permissions:
+  bags.*:
+    description: Allows player to give themselves bags
+    default: false
+    children:
+      bags.give: true
+      bags.small: true
+      bags.medium: true
+      bags.large: true
+      bags.ender: true
+  bags.give:
+    description: Allows player to give themselves bags
+    default: false
+  bags.small:
+    description: Allows player use small bag
+    default: false
+  bags.medium:
+    description: Allows player to use medium bag
+    default: false
+  bags.large:
+    description: Allows player to use large bag
+    default: false
+  bags.ender:
+    description: Allows player to use ender bag
+    default: false

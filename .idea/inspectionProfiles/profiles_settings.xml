@@ -1,0 +1,13 @@
+<component name="InspectionProjectProfileManager">
+  <settings>
+    <info color="57be00">
+      <option name="ERROR_STRIPE_COLOR" value="57be00" />
+      <option name="myName" value="Duplicates" />
+      <option name="myVal" value="50" />
+      <option name="myExternalName" value="Duplicates" />
+      <option name="myDefaultAttributes">
+        <option name="ERROR_STRIPE_COLOR" value="57be00" />
+      </option>
+    </info>
+  </settings>
+</component>

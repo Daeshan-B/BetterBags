@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BetterBags:jar">
+    <output-path>$PROJECT_DIR$/../../../Minecraft Servers/Ultimate Survival/plugins</output-path>
+    <root id="archive" name="Better Bags.jar">
+      <element id="module-output" name="Better Bags" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../SPIGOT_BUILDS/spigot-1.13.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
