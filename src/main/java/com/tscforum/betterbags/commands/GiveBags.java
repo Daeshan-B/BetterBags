@@ -1,64 +1,66 @@
 package com.tscforum.betterbags.commands;
 
-import com.tscforum.betterbags.BagMainClass;
+import com.tscforum.betterbags.Core;
 import com.tscforum.betterbags.commands.manager.SubCommand;
+import com.tscforum.betterbags.listeners.BagsEventsClass;
+import com.tscforum.betterbags.utils.MessageManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class GiveBags
-        extends SubCommand
-{
-    private BagMainClass plugin = BagMainClass.getPlugin(BagMainClass.class);
+public class GiveBags extends SubCommand {
 
-    public void onCommand(Player pp, String[] args)
-    {
-        if ((pp.hasPermission("bags.give")) || (pp.isOp()))
-        {
-            if (args.length == 0)
-            {
-                pp.sendMessage(this.plugin.error + "You must specify a bag!");
+    private Core plugin;
+
+     public GiveBags(Core plugin) {
+        this.plugin = plugin;
+    }
+
+    public void onCommand(Player pp, String[] args) {
+
+        if ((pp.hasPermission("bags.give")) || pp.isOp()) {
+            if (args.length == 0) {
+                pp.sendMessage(MessageManager.error + "You must specify a bag!");
                 return;
             }
-            if (args[0].equals("small"))
-            {
-                ItemStack i = this.plugin.bagItems.get(ChatColor.stripColor(this.plugin.bagsEvents.sb_name));
-                pp.getInventory().addItem(i);
+
+            switch (args[0]) {
+
+                case "small": {
+                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(BagsEventsClass.sb_name));
+                    pp.getInventory().addItem(i);
+                    break;
+                }
+                case "medium": {
+                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(BagsEventsClass.mb_name));
+                    pp.getInventory().addItem(i);
+                    break;
+                }
+                case "large": {
+                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(BagsEventsClass.lb_name));
+                    pp.getInventory().addItem(i);
+                    break;
+                }
+                case "ender": {
+                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(BagsEventsClass.eb_name));
+                    pp.getInventory().addItem(i);
+                    break;
+                }
+                default:
+                    pp.sendMessage(MessageManager.error + "You do not have permission for this command");
             }
-            else if (args[0].equals("medium"))
-            {
-                ItemStack i = this.plugin.bagItems.get(ChatColor.stripColor(this.plugin.bagsEvents.mb_name));
-                pp.getInventory().addItem(i);
-            }
-            else if (args[0].equals("large"))
-            {
-                ItemStack i = this.plugin.bagItems.get(ChatColor.stripColor(this.plugin.bagsEvents.lb_name));
-                pp.getInventory().addItem(i);
-            }
-            else if (args[0].equals("ender"))
-            {
-                ItemStack i = this.plugin.bagItems.get(ChatColor.stripColor(this.plugin.bagsEvents.eb_name));
-                pp.getInventory().addItem(i);
-            }
-        }
-        else
-        {
-            pp.sendMessage(this.plugin.error + "You do not have permission for the command.");
         }
     }
 
-    public String name()
-    {
+    public String name() {
         return "give";
     }
 
-    public String info()
-    {
+    public String info() {
         return "give";
     }
 
-    public String[] aliases()
-    {
-        return new String[] { "g" };
+    public String[] aliases() {
+        return new String[]{"g"};
     }
 }

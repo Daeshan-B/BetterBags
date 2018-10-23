@@ -1,5 +1,5 @@
 name: BetterBags
-version: ${project.version}
+version: 1.0-SNAPSHOT
 main: com.tscforum.betterbags.Core
 authors: [Mason, Daeshan]
 description: A plugin that adds bags to spigot servers.
