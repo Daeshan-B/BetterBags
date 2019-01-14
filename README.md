@@ -1,6 +1,6 @@
 
 # BetterBags
-Better Bags is a bag plugin that requires zero configuration. Just add to your server plugins folder and have access to four different bags! I created this bags plugin mostly for personal use. However, I found that it could be super useful for many servers! This plugin is super light-weight and will need put a ton of lag on your server.
+Better Bags is a bag plugin that requires zero configuration. Just add to your server plugins folder and have access to four different bags! I created this bags plugin mostly for personal use. However, I found that it could be super useful for many servers! This plugin is super light-weight and will not put a ton of lag on your server.
 
 **Current Bag Type:**  
 Currently there is only 4 bag types.
