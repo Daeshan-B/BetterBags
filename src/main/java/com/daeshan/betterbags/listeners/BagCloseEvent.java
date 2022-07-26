@@ -28,7 +28,7 @@ public class BagCloseEvent implements Listener {
             Player player = (Player) event.getPlayer();
             String uuid = player.getUniqueId().toString();
             Inventory closed = event.getInventory();
-            String closedname = ChatColor.stripColor(closed.getTitle());
+            String closedname = ChatColor.stripColor(event.getView().getTitle());
             HashMap<String, List> inventories = (HashMap<String, List>) plugin.nitRiteData.getFromDocument("uuid", uuid, "inventories");
             for (String bagnames : inventories.keySet()) {
                 if (closedname.equalsIgnoreCase(bagnames)) {

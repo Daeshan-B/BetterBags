@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Better Bags" />
+        <module name="BetterBags" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Better Bags" target="1.8" />
+      <module name="BetterBags" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,7 +1,7 @@
 name: BetterBags
 version: 3.0
 main: com.daeshan.betterbags.BetterBagsCore
-api-version: 1.13
+api-version: 1.18
 description: A light-weight minecraft bags plugin
 commands:
   bags:
