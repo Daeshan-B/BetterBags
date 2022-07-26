@@ -13,7 +13,7 @@ import java.util.Date;
 
 public class ExportNitrite extends SubCommand {
 
-    private BetterBagsCore plugin;
+    private final BetterBagsCore plugin;
 
     public ExportNitrite(BetterBagsCore plugin) {
         this.plugin = plugin;
@@ -23,7 +23,7 @@ public class ExportNitrite extends SubCommand {
 
         if ((player.hasPermission("bags.export")) || player.isOp()) {
             File path = new File(plugin.getDataFolder() + "/export");
-            if(!path.exists()){
+            if (!path.exists()) {
                 path.mkdirs();
             }
             Exporter exporter = Exporter.of(plugin.nitRiteData.database);

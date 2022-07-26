@@ -6,12 +6,13 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class BagsConfigManager implements Listener {
 
     public File bags;
     public FileConfiguration bagsconfig;
-    private BetterBagsCore plugin;
+    private final BetterBagsCore plugin;
 
     public BagsConfigManager(BetterBagsCore plugin) {
         this.plugin = plugin;
@@ -40,7 +41,7 @@ public class BagsConfigManager implements Listener {
         }
         this.bagsconfig = YamlConfiguration.loadConfiguration(this.bags);
 
-        Reader defConfigStream = new InputStreamReader(this.plugin.getResource("User_Bag_Data.yml.yml"), "UTF8");
+        Reader defConfigStream = new InputStreamReader(this.plugin.getResource("User_Bag_Data.yml.yml"), StandardCharsets.UTF_8);
         YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
         bagsconfig.setDefaults(defConfig);
     }

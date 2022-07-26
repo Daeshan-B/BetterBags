@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
 public class BagRecipes {
-    private BetterBagsCore plugin;
+    private final BetterBagsCore plugin;
 
     public BagRecipes(BetterBagsCore plugin) {
         this.plugin = plugin;
@@ -23,7 +23,7 @@ public class BagRecipes {
 
     private void setEnderRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, "ender_bag");
-        ItemStack ender = plugin.bagItems.get(plugin.bagManager.eb_name);
+        ItemStack ender = plugin.bagItems.get(plugin.bagManager.eb_name.content());
         ShapedRecipe eb = new ShapedRecipe(key, ender);
         eb.shape("$!$", "#%#", "$!$");
         eb.setIngredient('#', Material.LEATHER);
@@ -35,7 +35,7 @@ public class BagRecipes {
 
     private void setLargeRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, "large_bag");
-        ItemStack large = plugin.bagItems.get(plugin.bagManager.lb_name);
+        ItemStack large = plugin.bagItems.get(plugin.bagManager.lb_name.content());
         ShapedRecipe lb = new ShapedRecipe(key, large);
         lb.shape("!#!", "#%#", "!#!");
         lb.setIngredient('#', Material.LEATHER);
@@ -46,7 +46,7 @@ public class BagRecipes {
 
     private void setMediumRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, "medium_bag");
-        ItemStack medium = plugin.bagItems.get(plugin.bagManager.mb_name);
+        ItemStack medium = plugin.bagItems.get(plugin.bagManager.mb_name.content());
         ShapedRecipe mb = new ShapedRecipe(key, medium);
         mb.shape("!#!", "#%#", "!#!");
         mb.setIngredient('#', Material.LEATHER);
@@ -57,7 +57,7 @@ public class BagRecipes {
 
     private void setSmallRecipe() {
         NamespacedKey key = new NamespacedKey(plugin, "small_bag");
-        ItemStack small = plugin.bagItems.get(plugin.bagManager.sb_name);
+        ItemStack small = plugin.bagItems.get(plugin.bagManager.sb_name.content());
         ShapedRecipe sb = new ShapedRecipe(key, small);
 
         sb.shape("#$#", "#%#", "###");

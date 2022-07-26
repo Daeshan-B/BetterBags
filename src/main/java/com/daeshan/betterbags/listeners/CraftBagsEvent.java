@@ -2,6 +2,8 @@ package com.daeshan.betterbags.listeners;
 
 import com.daeshan.betterbags.BetterBagsCore;
 import com.daeshan.betterbags.utils.MessageManager;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -12,11 +14,12 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.w3c.dom.Text;
 
 import java.util.*;
 
 public class CraftBagsEvent implements Listener {
-    private BetterBagsCore plugin;
+    private final BetterBagsCore plugin;
 
     public CraftBagsEvent(BetterBagsCore plugin) {
         this.plugin = plugin;
@@ -25,12 +28,11 @@ public class CraftBagsEvent implements Listener {
     @EventHandler
     public void craftBagEvent(CraftItemEvent event) {
         ItemStack craftedItem = event.getCurrentItem();
-        if (event.getWhoClicked() instanceof Player) {
-            Player player = (Player) event.getWhoClicked();
+        if (event.getWhoClicked() instanceof Player player) {
             String uuid = player.getUniqueId().toString();
 
-            if (plugin.bagItems.containsKey(craftedItem.getItemMeta().getDisplayName())) {
-                String name = craftedItem.getItemMeta().getDisplayName();
+            if (plugin.bagItems.containsKey(craftedItem.displayName())) {
+                TextComponent name = (TextComponent) craftedItem.getItemMeta().displayName();
                 int bagcount = (int) plugin.nitRiteData.getFromDocument("uuid", uuid, "bag.count");
                 bagcount += 1;
                 plugin.nitRiteData.setInDocument("uuid", uuid, "bag.count", bagcount);
@@ -47,13 +49,13 @@ public class CraftBagsEvent implements Listener {
                 craftedItem.setItemMeta(itemMeta);
 
                 MessageManager.debug("Player crafted a bag");
-                HashMap<String, List> inventories;
+                HashMap<String, List<Map<String, Object>>> inventories;
 
                 if (bagcount == 1) {
                     inventories = new HashMap<>();
                     putInventory(inventories, bagcount, uuid, name);
                 } else {
-                    inventories = (HashMap<String, List>) plugin.nitRiteData.getFromDocument("uuid", uuid, "inventories");
+                    inventories = (HashMap<String, List<Map<String, Object>>>) plugin.nitRiteData.getFromDocument("uuid", uuid, "inventories");
                     putInventory(inventories, bagcount, uuid, name);
                 }
             }
@@ -61,16 +63,16 @@ public class CraftBagsEvent implements Listener {
 
     }
 
-    private void putInventory(HashMap<String, List> inventories, int bagcount, String uuid, String bagname) {
-        Inventory inventory = plugin.bagManager.getBag(bagname);
-        List<Map> items = new ArrayList<>();
-        if (!bagname.equalsIgnoreCase(plugin.bagManager.eb_name)) {
+    private void putInventory(HashMap<String, List<Map<String, Object>>> inventories, int bagCount, String uuid, TextComponent bagName) {
+        Inventory inventory = plugin.bagManager.getBag(bagName);
+        List<Map<String, Object>> items = new ArrayList<>();
+        if (bagName != plugin.bagManager.eb_name) {
             for (ItemStack itemStack : inventory.getContents()) {
                 if (itemStack == null) continue;
                 items.add(itemStack.serialize());
             }
-            inventories.put("BAG#0" + bagcount, items);
-        } else if (bagname.equalsIgnoreCase(plugin.bagManager.eb_name)) {
+            inventories.put("BAG#0" + bagCount, items);
+        } else {
             Player player = Bukkit.getPlayer(UUID.fromString(uuid));
             for (ItemStack itemStack : player.getEnderChest().getContents()) {
                 if (itemStack == null) continue;

@@ -3,13 +3,12 @@ package com.daeshan.betterbags.commands;
 import com.daeshan.betterbags.BetterBagsCore;
 import com.daeshan.betterbags.commands.manager.SubCommand;
 import com.daeshan.betterbags.utils.MessageManager;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class GiveBags extends SubCommand {
 
-    private BetterBagsCore plugin;
+    private final BetterBagsCore plugin;
 
     public GiveBags(BetterBagsCore plugin) {
         this.plugin = plugin;
@@ -24,29 +23,26 @@ public class GiveBags extends SubCommand {
             }
 
             switch (args[0]) {
+                case "small" -> {
+                    ItemStack i = plugin.bagItems.get(plugin.bagManager.sb_name.content());
+                    player.getInventory().addItem(i);
+                }
+                case "medium" -> {
+                    ItemStack i = plugin.bagItems.get(plugin.bagManager.mb_name.content());
+                    player.getInventory().addItem(i);
 
-                case "small": {
-                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(plugin.bagManager.sb_name));
-                    player.getInventory().addItem(i);
-                    break;
                 }
-                case "medium": {
-                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(plugin.bagManager.mb_name));
+                case "large" -> {
+                    ItemStack i = plugin.bagItems.get(plugin.bagManager.lb_name.content());
                     player.getInventory().addItem(i);
-                    break;
+
                 }
-                case "large": {
-                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(plugin.bagManager.lb_name));
+                case "ender" -> {
+                    ItemStack i = plugin.bagItems.get(plugin.bagManager.eb_name.content());
                     player.getInventory().addItem(i);
-                    break;
+
                 }
-                case "ender": {
-                    ItemStack i = plugin.bagItems.get(ChatColor.stripColor(plugin.bagManager.eb_name));
-                    player.getInventory().addItem(i);
-                    break;
-                }
-                default:
-                    MessageManager.errorPlayer(player, "You do not have permission for this command");
+                default -> MessageManager.errorPlayer(player, "You do not have permission for this command");
             }
         }
     }

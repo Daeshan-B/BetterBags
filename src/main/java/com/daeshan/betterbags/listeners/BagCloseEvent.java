@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BagCloseEvent implements Listener {
-    private BetterBagsCore plugin;
+    private final BetterBagsCore plugin;
 
     public BagCloseEvent(BetterBagsCore plugin) {
         this.plugin = plugin;
@@ -28,10 +28,10 @@ public class BagCloseEvent implements Listener {
             Player player = (Player) event.getPlayer();
             String uuid = player.getUniqueId().toString();
             Inventory closed = event.getInventory();
-            String closedname = ChatColor.stripColor(event.getView().getTitle());
+            String closedName = ChatColor.stripColor(event.getView().getTitle());
             HashMap<String, List> inventories = (HashMap<String, List>) plugin.nitRiteData.getFromDocument("uuid", uuid, "inventories");
             for (String bagnames : inventories.keySet()) {
-                if (closedname.equalsIgnoreCase(bagnames)) {
+                if (closedName.equalsIgnoreCase(bagnames)) {
                     List<Map> itemserialized = new ArrayList<>();
                     if (bagnames.equalsIgnoreCase("ender")) {
                         player.getEnderChest().clear();
@@ -48,7 +48,7 @@ public class BagCloseEvent implements Listener {
                             }
                         }
                     }
-                    inventories.put(closedname, itemserialized);
+                    inventories.put(closedName, itemserialized);
                     plugin.nitRiteData.setInDocument("uuid", uuid, "inventories", inventories);
                     MessageManager.debug("Bag saved to file.");
                 }

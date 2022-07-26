@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class SetupPlayerEvent implements Listener {
 
-    private BetterBagsCore plugin;
+    private final BetterBagsCore plugin;
 
     public SetupPlayerEvent(BetterBagsCore plugin) {
         this.plugin = plugin;

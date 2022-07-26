@@ -21,6 +21,7 @@ public class MessageManager {
     public static void debug(String message) {
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.LIGHT_PURPLE + "#BAGS-DEBUG: " + ChatColor.WHITE + message);
     }
+
     public static void errorConsole(String message) {
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "#BAGS-ERROR: " + ChatColor.WHITE + message);
     }

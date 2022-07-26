@@ -19,8 +19,8 @@ import java.util.Arrays;
 
 public class CommandManager implements CommandExecutor {
 
-    private ArrayList<SubCommand> commands = new ArrayList<>();
-    private BetterBagsCore plugin;
+    private final ArrayList<SubCommand> commands = new ArrayList<>();
+    private final BetterBagsCore plugin;
 
     public CommandManager(BetterBagsCore plugin) {
         this.plugin = plugin;

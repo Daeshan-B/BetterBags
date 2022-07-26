@@ -18,14 +18,12 @@ import static org.dizitart.no2.filters.Filters.eq;
 
 public class NitRiteData {
 
-    private BetterBagsCore plugin;
-
+    public Nitrite database;
+    public NitriteCollection collection;
+    private final BetterBagsCore plugin;
     public NitRiteData(BetterBagsCore plugin) {
         this.plugin = plugin;
     }
-
-    public Nitrite database;
-    public NitriteCollection collection;
 
     public void setup() {
         String username = plugin.getConfig().getString("Nitrite_Database.username");
